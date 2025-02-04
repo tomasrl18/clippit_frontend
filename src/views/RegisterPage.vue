@@ -1,20 +1,28 @@
-<!-- src/views/Register.vue -->
-
 <template>
-  <div class="register">
-    <h2>Registro</h2>
-    <form @submit.prevent="handleRegister">
-      <div>
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" v-model="user.username" required />
-      </div>
-      <div>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <button type="submit">Registrar</button>
-    </form>
-    <p v-if="error">{{ error }}</p>
+  <div class="register-container">
+    <div class="register-box">
+      <h2>Sign Up</h2>
+      <form @submit.prevent="handleRegister">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" v-model="user.username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            v-model="user.password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn-register">Sign up</button>
+      </form>
+      <p v-if="error" class="error">{{ error }}</p>
+      <router-link to="/login" class="link-login">
+        Do you have an account? Log in here
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -35,15 +43,105 @@ export default {
   methods: {
     async handleRegister() {
       try {
+        this.error = null;
         // eslint-disable-next-line no-unused-vars
         const response = await apiClient.post("api/register/", this.user);
-        alert("Registro exitoso. Inicia sesión ahora.");
-        this.$router.push("/login"); // Redirige al formulario de inicio de sesión
+        alert("Signed up succesfully. Log in now");
+        this.$router.push("/login");
       } catch (error) {
-        this.error = "Error al registrar. Inténtalo de nuevo.";
-        console.error("Error al registrar:", error);
+        this.error = "Error on sign up. Try it again.";
+        console.error("Error on sign up:", error);
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #f4f4f9;
+}
+
+.register-box {
+  background-color: #ffffff;
+  padding: 50px 70px;
+  border-radius: 12px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.register-box h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #555555;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #42b983;
+  outline: none;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 15px;
+  background-color: #42b983;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.btn-register:hover {
+  background-color: #38a169;
+}
+
+.error {
+  margin-top: 10px;
+  color: #e53e3e;
+  font-size: 14px;
+}
+
+.link-login {
+  display: block;
+  margin-top: 20px;
+  font-size: 17px;
+  color: #42b983;
+  text-decoration: none;
+}
+
+.link-login:hover {
+  text-decoration: underline;
+}
+</style>
