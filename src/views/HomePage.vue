@@ -2,8 +2,8 @@
 
 <template>
   <div class="home">
-    <h1>Bienvenido a Clippit</h1>
-    <p>Administra tus notas y tareas aquí.</p>
+    <h1>Welcome to Clippit</h1>
+    <p>Manage your notes and tasks here</p>
   </div>
 </template>
 

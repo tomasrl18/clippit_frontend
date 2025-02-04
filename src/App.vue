@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link class="nav-links" to="/">Home</router-link> |
-      <router-link class="nav-links" to="/tasks">Tasks</router-link> |
-      <router-link class="nav-links" to="/notes">Notes</router-link>
-      <button v-if="isLoggedIn" @click="logout" class="logout">Logout</button>
+    <header class="header">
+      <h1>Clippit</h1>
+    </header>
+    <nav class="navbar">
+      <router-link class="nav-link" to="/">Home</router-link> |
+      <router-link class="nav-link" to="/tasks">Tasks</router-link> |
+      <router-link class="nav-link" to="/notes">Notes</router-link>
+      <button v-if="isLoggedIn" @click="logout" class="btn-logout">
+        Logout
+      </button>
     </nav>
-    <router-view />
+    <main class="main-content">
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
+    </main>
+    <footer class="footer">
+      <p>&copy; {{ currentYear }} Clippit. All rights reserved.</p>
+    </footer>
   </div>
 </template>
 
@@ -15,6 +27,7 @@ export default {
   data() {
     return {
       isLoggedIn: false,
+      currentYear: new Date().getFullYear(),
     };
   },
   created() {
@@ -34,45 +47,93 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.nav-links {
-  font-size: 1.5rem;
-  text-transform: uppercase;
+.header {
+  background-color: #42b983;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  background-color: #f4f4f9;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-link {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+  font-weight: bold;
   padding: 10px;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
+.nav-link:hover,
+.nav-link.router-link-exact-active {
   color: #42b983;
 }
 
-.logout {
-  margin-left: 20px;
-  padding: 5px 10px;
-  border: none;
+.btn-logout {
+  margin-left: auto;
+  padding: 8px 16px;
   background-color: #42b983;
   color: white;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.logout:hover {
+.btn-logout:hover {
   background-color: #38a169;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.footer {
+  background-color: #42b983;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
 }
 </style>
