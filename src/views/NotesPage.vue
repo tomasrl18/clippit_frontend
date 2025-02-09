@@ -1,6 +1,6 @@
 <template>
   <div class="notes">
-    <h1>Notas</h1>
+    <h1>Notes</h1>
     <ul>
       <li v-for="note in notes" :key="note.id">{{ note.title }}</li>
     </ul>

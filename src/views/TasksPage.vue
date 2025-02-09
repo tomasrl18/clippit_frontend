@@ -1,8 +1,6 @@
-<!-- src/views/Tasks.vue -->
-
 <template>
   <div class="tasks">
-    <h1>Tareas</h1>
+    <h1>Tasks</h1>
     <ul>
       <li v-for="task in tasks" :key="task.id">
         {{ task.title }} - {{ task.completed ? "Completada" : "Pendiente" }}

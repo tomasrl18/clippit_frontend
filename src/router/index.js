@@ -1,13 +1,13 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-function requireAuth(to, from, next) {
+/* function requireAuth(to, from, next) {
   const token = localStorage.getItem("access_token");
   if (token) {
     next();
   } else {
     next("/login");
   }
-}
+} */
 
 const routes = [
   {
@@ -19,15 +19,15 @@ const routes = [
     path: "/notes",
     name: "notes",
     component: () => import("../views/NotesPage.vue"),
-    beforeEnter: requireAuth,
+    /* beforeEnter: requireAuth, */
   },
   {
     path: "/tasks",
     name: "tasks",
     component: () => import("../views/TasksPage.vue"),
-    beforeEnter: requireAuth,
+    /* beforeEnter: requireAuth, */
   },
-  {
+  /* {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginPage.vue"),
@@ -36,7 +36,7 @@ const routes = [
     path: "/register",
     name: "register",
     component: () => import("../views/RegisterPage.vue"),
-  },
+  }, */
 ];
 
 const router = createRouter({

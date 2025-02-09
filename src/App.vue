@@ -7,9 +7,9 @@
       <router-link class="nav-link" to="/">Home</router-link> |
       <router-link class="nav-link" to="/tasks">Tasks</router-link> |
       <router-link class="nav-link" to="/notes">Notes</router-link>
-      <button v-if="isLoggedIn" @click="logout" class="btn-logout">
+      <!-- <button v-if="isLoggedIn" @click="logout" class="btn-logout">
         Logout
-      </button>
+      </button> -->
     </nav>
     <main class="main-content">
       <transition name="fade" mode="out-in">
@@ -26,11 +26,11 @@
 export default {
   data() {
     return {
-      isLoggedIn: false,
+      /* isLoggedIn: false, */
       currentYear: new Date().getFullYear(),
     };
   },
-  created() {
+  /* created() {
     this.checkAuth();
   },
   methods: {
@@ -43,7 +43,7 @@ export default {
       this.isLoggedIn = false;
       this.$router.push("/login");
     },
-  },
+  }, */
 };
 </script>
 
@@ -54,7 +54,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height: 100vh;
+  min-height: 98.8vh;
   display: flex;
   flex-direction: column;
 }
@@ -100,7 +100,7 @@ export default {
   color: #42b983;
 }
 
-.btn-logout {
+/* .btn-logout {
   margin-left: auto;
   padding: 8px 16px;
   background-color: #42b983;
@@ -113,7 +113,7 @@ export default {
 
 .btn-logout:hover {
   background-color: #38a169;
-}
+} */
 
 .main-content {
   flex: 1;

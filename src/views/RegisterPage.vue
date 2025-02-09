@@ -2,13 +2,24 @@
   <div class="register-container">
     <div class="register-box">
       <h2>Sign Up</h2>
+      <small>(Asterisk means required)</small>
       <form @submit.prevent="handleRegister">
         <div class="input-group">
-          <label for="username">Username:</label>
+          <label for="name">Name:</label>
+          <input type="text" id="name" v-model="user.first_name" />
+        </div>
+        <div class="input-group">
+          <label for="username">
+            <span class="asterisk">*</span>
+            Username:
+          </label>
           <input type="text" id="username" v-model="user.username" required />
         </div>
         <div class="input-group">
-          <label for="password">Password:</label>
+          <label for="password">
+            <span class="asterisk">*</span>
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -34,6 +45,7 @@ export default {
   data() {
     return {
       user: {
+        name: "",
         username: "",
         password: "",
       },
@@ -142,5 +154,9 @@ export default {
 
 .link-login:hover {
   text-decoration: underline;
+}
+
+.asterisk {
+  color: #e53e3e;
 }
 </style>
